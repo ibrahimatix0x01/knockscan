@@ -6,4 +6,5 @@ if ! [ $TARGET ]; then
 fi
 knockknock -n $TARGET -p
 subfinder -dL domains.txt -silent | anew -q targets.txt
-nuclei -id CVE-2022-26134 -l targets.txt -vv -o vulns.txt
+cat targets.txt | httprobe > probed.txt
+nuclei -list probed.txt -o final.txt
